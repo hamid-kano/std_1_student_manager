@@ -1,0 +1,87 @@
+/* =========================================
+   Student ID Cards
+   ========================================= */
+.student-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #1e3a8a;
+  padding: 15px;
+  direction: rtl;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  font-size: 14px;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.card-top img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #1e3a8a;
+}
+.university-name { font-weight: bold; font-size: 16px; color: #1e3a8a; }
+
+.card-body { display: flex; gap: 15px; margin-top: 30px; }
+.student-photo { width: 120px; height: 140px; object-fit: cover; border-radius: 8px; border: 2px solid #ccc; }
+.card-info { flex: 1; line-height: 1.8; }
+
+.card-actions { text-align: center; margin-top: 10px; }
+.card-actions button { padding: 5px 12px; margin: 4px; border: none; border-radius: 6px; cursor: pointer; width: auto; }
+
+#cardsOutput {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  #cardsOutput { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   Courses
+   ========================================= */
+.course-dept-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 35px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+.course-dept-card h2 { text-align: center; margin-bottom: 25px; color: #1e293b; }
+
+.course-year {
+  background: linear-gradient(135deg, #e5e7eb, #f8fafc);
+  padding: 15px 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  border-right: 6px solid #94a3b8;
+}
+.course-year h3 { margin-bottom: 15px; color: #334155; font-size: 18px; }
+
+.course-semester {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.course-semester strong { display: block; margin-bottom: 12px; color: #2563eb; font-size: 15px; }
+
+.course-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.course-item { background: #2563eb; color: white; padding: 6px 16px; border-radius: 20px; font-size: 14px; }
+
+/* =========================================
+   Print
+   ========================================= */
+@media print {
+  body * { visibility: hidden; }
+  .student-card, .student-card * { visibility: visible; }
+  .student-card { position: absolute; left: 0; right: 0; margin: auto; }
+  .card-actions { display: none !important; }
+}
