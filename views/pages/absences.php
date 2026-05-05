@@ -1,8 +1,14 @@
 <?php
 $absences = $data['absences'] ?? [];
+$courses  = $data['courses']  ?? [];
 $q        = htmlspecialchars($_GET['q']        ?? '');
 $year     = htmlspecialchars($_GET['year']     ?? '');
 $semester = htmlspecialchars($_GET['semester'] ?? '');
+
+$coursesByDept = [];
+foreach ($courses as $c) {
+    $coursesByDept[$c['department_id']][] = $c['name'];
+}
 ?>
 
 <div class="page-header">
@@ -24,8 +30,22 @@ $semester = htmlspecialchars($_GET['semester'] ?? '');
         <input type="text" name="university_id" placeholder="أدخل الرقم الجامعي" required>
       </div>
       <div class="form-group">
+        <label>القسم</label>
+        <select id="absDept" onchange="filterAbsCourses()">
+          <option value="">-- اختر القسم أولاً --</option>
+          <?php
+          $db   = Database::getInstance();
+          $deps = $db->query("SELECT id, name FROM departments ORDER BY name")->fetchAll();
+          foreach ($deps as $d): ?>
+            <option value="<?= $d['id'] ?>"><?= htmlspecialchars($d['name']) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div class="form-group">
         <label>المادة</label>
-        <input type="text" name="subject" placeholder="اسم المادة" required>
+        <select name="subject" id="absSubject" required>
+          <option value="" disabled selected>اختر القسم أولاً</option>
+        </select>
       </div>
       <div class="form-group">
         <label>تاريخ الغياب</label>
@@ -174,6 +194,27 @@ $semester = htmlspecialchars($_GET['semester'] ?? '');
 </div>
 
 <script>
+const absCoursesByDept = <?= json_encode($coursesByDept, JSON_UNESCAPED_UNICODE) ?>;
+
+function filterAbsCourses() {
+  const deptId   = document.getElementById('absDept').value;
+  const subjSel  = document.getElementById('absSubject');
+
+  subjSel.innerHTML = '<option value="" disabled selected>اختر المادة</option>';
+
+  const courses = absCoursesByDept[deptId] ?? [];
+  if (courses.length === 0) {
+    subjSel.innerHTML = '<option value="" disabled selected>لا توجد مواد لهذا القسم</option>';
+    return;
+  }
+  courses.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    subjSel.appendChild(opt);
+  });
+}
+
 function openAbsenceEdit(a) {
   document.getElementById('absEditId').value       = a.id;
   document.getElementById('absEditSubject').value  = a.subject;

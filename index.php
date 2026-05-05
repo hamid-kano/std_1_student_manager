@@ -39,13 +39,15 @@ $data = match($page) {
                           $_GET['q']          ?? '',
                           $_GET['department'] ?? 'all'
                       ),
-                      'departments' => (new Department())->all()],
+                      'departments' => (new Department())->all(),
+                      'courses'     => (new Course())->all()],
 
     'absences'    => ['absences'    => (new Absence())->allWithStudent(
                           $_GET['q']        ?? '',
                           $_GET['year']     ?? '',
                           $_GET['semester'] ?? ''
-                      )],
+                      ),
+                      'courses'     => (new Course())->all()],
 
     'cards'       => [],
     default       => [],

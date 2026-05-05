@@ -59,8 +59,10 @@
   </button>
 </div>
 
-<!-- بحث -->
-<div class="filters-bar" style="margin-top:20px;">
+<!-- فاصل + بحث فوق النتائج -->
+<div class="card" style="margin-top:20px;">
+  <h3><i class="fa-solid fa-magnifying-glass"></i> البحث في البطاقات</h3>
+  <br>
   <input type="text" id="searchCard"
          placeholder="ابحث بالاسم أو الرقم الجامعي..."
          onkeyup="searchCard()"

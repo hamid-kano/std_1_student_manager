@@ -1,8 +1,15 @@
 <?php
 $grades      = $data['grades']      ?? [];
 $departments = $data['departments'] ?? [];
+$courses     = $data['courses']     ?? [];
 $q           = htmlspecialchars($_GET['q']          ?? '');
 $deptFilter  = htmlspecialchars($_GET['department'] ?? 'all');
+
+// تجميع المواد حسب department_id لاستخدامها في JS
+$coursesByDept = [];
+foreach ($courses as $c) {
+    $coursesByDept[$c['department_id']][] = $c['name'];
+}
 ?>
 
 <div class="page-header">
@@ -21,24 +28,29 @@ $deptFilter  = htmlspecialchars($_GET['department'] ?? 'all');
     <div class="form-grid">
       <div class="form-group">
         <label>الرقم الجامعي</label>
-        <input type="text" name="university_id" placeholder="أدخل الرقم الجامعي" required>
+        <input type="text" name="university_id" id="gradeUid" placeholder="أدخل الرقم الجامعي" required>
+      </div>
+      <div class="form-group">
+        <label>القسم</label>
+        <select name="department" id="gradeDept" onchange="filterCoursesByDept()">
+          <option value="">-- اختر القسم أولاً --</option>
+          <?php foreach ($departments as $d): ?>
+            <option value="<?= htmlspecialchars($d['name']) ?>"
+                    data-id="<?= $d['id'] ?>">
+              <?= htmlspecialchars($d['name']) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
       </div>
       <div class="form-group">
         <label>المادة</label>
-        <input type="text" name="subject" placeholder="اسم المادة" required>
+        <select name="subject" id="gradeSubject" required>
+          <option value="" disabled selected>اختر القسم أولاً</option>
+        </select>
       </div>
       <div class="form-group">
         <label>العلامة (0-100)</label>
         <input type="number" name="grade" min="0" max="100" placeholder="العلامة" required>
-      </div>
-      <div class="form-group">
-        <label>القسم</label>
-        <select name="department">
-          <option value="">تلقائي من بيانات الطالب</option>
-          <?php foreach ($departments as $d): ?>
-            <option value="<?= htmlspecialchars($d['name']) ?>"><?= htmlspecialchars($d['name']) ?></option>
-          <?php endforeach; ?>
-        </select>
       </div>
       <div class="form-group">
         <label>السنة</label>
@@ -185,6 +197,29 @@ $deptFilter  = htmlspecialchars($_GET['department'] ?? 'all');
 </div>
 
 <script>
+// بيانات المواد حسب القسم (من PHP)
+const coursesByDept = <?= json_encode($coursesByDept, JSON_UNESCAPED_UNICODE) ?>;
+
+function filterCoursesByDept() {
+  const deptSelect  = document.getElementById('gradeDept');
+  const subjSelect  = document.getElementById('gradeSubject');
+  const deptId      = deptSelect.options[deptSelect.selectedIndex]?.dataset.id;
+
+  subjSelect.innerHTML = '<option value="" disabled selected>اختر المادة</option>';
+
+  const courses = coursesByDept[deptId] ?? [];
+  if (courses.length === 0) {
+    subjSelect.innerHTML = '<option value="" disabled selected>لا توجد مواد لهذا القسم</option>';
+    return;
+  }
+  courses.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    subjSelect.appendChild(opt);
+  });
+}
+
 function openGradeEdit(id, subject, grade) {
   document.getElementById('gradeEditId').value      = id;
   document.getElementById('gradeEditSubject').value = subject;
