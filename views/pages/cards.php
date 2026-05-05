@@ -5,13 +5,7 @@
 
 
 
-<!-- بحث -->
-<div class="filters-bar" style="margin-top:20px;">
-  <input type="text" id="searchCard"
-         placeholder="ابحث بالاسم أو الرقم الجامعي..."
-         onkeyup="searchCard()"
-         style="max-width:400px;">
-</div>
+
 
 <!-- فورم الإنشاء -->
 <div class="card">
@@ -65,6 +59,13 @@
   </button>
 </div>
 
+<!-- بحث -->
+<div class="filters-bar" style="margin-top:20px;">
+  <input type="text" id="searchCard"
+         placeholder="ابحث بالاسم أو الرقم الجامعي..."
+         onkeyup="searchCard()"
+         style="max-width:400px;">
+</div>
 
 <!-- البطاقات -->
 <div id="cardsOutput"></div>
