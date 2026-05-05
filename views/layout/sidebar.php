@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div class="logo">
-    <img src="/university-system/assets/images/logo.jfif" alt="شعار الجامعة">
+    <img src="<?= ASSETS_URL ?>/images/logo.jfif" alt="شعار الجامعة">
     <h3>شؤون الطلاب</h3>
   </div>
 
