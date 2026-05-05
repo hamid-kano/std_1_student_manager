@@ -43,7 +43,7 @@ function loadFaculties() {
     const row = table.insertRow(-1);
     row.insertCell(0).textContent = f.name;
     row.insertCell(1).textContent = f.dean;
-    row.insertCell(2).innerHTML   = `<button class="edit-btn" onclick="editFaculty(this)">✏️</button>`;
+    row.insertCell(2).innerHTML   = `<button class="edit-btn" onclick="editFaculty(this)"><i class="fa-solid fa-pen"></i></button>`;
   });
 }
 

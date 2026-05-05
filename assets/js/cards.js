@@ -55,8 +55,8 @@ function addCardToPage(university, name, number, mother, birth, faculty, dept, d
         <img src="${photo}" class="student-photo">
       </div>
       <div class="card-actions">
-        <button onclick="printCard(this)" style="width:auto; padding:5px 12px;">🖨️ طباعة</button>
-        <button onclick="deleteCard(this)" style="width:auto; padding:5px 12px;">🗑️ حذف</button>
+        <button onclick="printCard(this)" style="width:auto; padding:5px 12px;"><i class="fa-solid fa-print"></i> طباعة</button>
+        <button onclick="deleteCard(this)" style="width:auto; padding:5px 12px;"><i class="fa-solid fa-trash"></i> حذف</button>
       </div>
     </div>`;
   saveCards();

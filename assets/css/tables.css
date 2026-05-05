@@ -1,29 +1,71 @@
 /* =========================================
-   Tables - shared styles
+   Tables - extended styles
    ========================================= */
-.staff-card  { max-width: 1100px; margin: 40px auto; }
-.staff-table { width: 100%; font-size: 16px; }
-.staff-table th { background: #f8fafc; font-size: 17px; padding: 16px; }
-.staff-table td { padding: 14px; font-size: 15px; }
-#staff h1    { text-align: center; margin-bottom: 20px; }
+
+/* Staff */
+.staff-card  { max-width: 1000px; margin: 0 auto; }
 
 /* Grade tables */
-.studentTable { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
-.studentTable h3 { background-color: #f0f0f0; padding: 5px; }
-.studentTable table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-.studentTable th,
-.studentTable td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: middle; }
-.studentTable th { background-color: #eee; }
-.studentTable td button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
-  padding: 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.student-grades {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
 }
-.studentAverage { margin-top: 10px; font-weight: bold; }
+
+.student-grades h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.studentAverage {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 14px;
+}
+
+/* Absence container */
+.absence-container { max-width: 1000px; }
+
+.search-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.absence-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.absence-form input,
+.absence-form select {
+  flex: 1;
+  min-width: 140px;
+  margin-bottom: 0;
+}
+
+.absence-form button {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-family: var(--font);
+  width: auto;
+}

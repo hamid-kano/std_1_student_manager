@@ -32,14 +32,14 @@ function addAbsenceRow(a) {
 
   const editCell = row.insertCell(6);
   const editBtn  = document.createElement('button');
-  editBtn.textContent  = '✏️';
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
   editBtn.style.cssText = 'width:auto;';
   editBtn.onclick = () => editAbsence(row);
   editCell.appendChild(editBtn);
 
   const delCell = row.insertCell(7);
   const delBtn  = document.createElement('button');
-  delBtn.textContent  = '🗑️';
+  delBtn.innerHTML  = '<i class="fa-solid fa-trash"></i>';
   delBtn.style.cssText = 'width:auto;';
   delBtn.onclick = () => {
     if (confirm('هل تريد حذف هذا الغياب؟')) { row.remove(); saveAbsences(); }
@@ -71,7 +71,7 @@ function editAbsence(row) {
   </select>`;
 
   const editBtn = row.cells[6].querySelector('button');
-  editBtn.textContent = '💾';
+  editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
   editBtn.onclick = () => {
     row.cells[0].textContent = row.cells[0].querySelector('input').value;
     row.cells[1].textContent = row.cells[1].querySelector('input').value;
@@ -79,7 +79,7 @@ function editAbsence(row) {
     row.cells[3].textContent = row.cells[3].querySelector('input').value;
     row.cells[4].textContent = row.cells[4].querySelector('select').value;
     row.cells[5].textContent = row.cells[5].querySelector('select').value;
-    editBtn.textContent = '✏️';
+    editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     editBtn.onclick = () => editAbsence(row);
     saveAbsences();
   };

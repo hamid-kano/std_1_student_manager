@@ -1,58 +1,163 @@
 /* =========================================
    Forms & Inputs
    ========================================= */
-form {
-  max-width: 600px;
-  margin: auto;
+.form-card {
   background: white;
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.1);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 620px;
 }
 
-input, select {
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-grid .full { grid-column: span 2; }
+
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: span 1; }
+}
+
+/* Label + Input group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+input, select, textarea {
   width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
-  border: 1px solid #cbd5e1;
-}
-
-/* Search inputs with icon */
-#searchInput,
-#idSearchInput {
-  padding-right: 42px !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 18px;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-#searchInput:hover,
-#idSearchInput:hover { border-color: #64748b; }
-#searchInput:focus,
-#idSearchInput:focus {
+  font-family: var(--font);
+  font-size: 14px;
+  color: #1e293b;
+  background: #f8fafc;
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z'/%3E%3C/svg%3E");
+  transition: border-color .2s, box-shadow .2s;
+  margin-bottom: 0;
 }
 
-/* Grade form grid */
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+}
+
+input::placeholder { color: #94a3b8; }
+
+/* Submit button */
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: .2s;
+  margin-top: 6px;
+}
+.btn-submit:hover { background: var(--primary-dk); transform: translateY(-1px); }
+
+/* Search with icon */
+.search-input {
+  position: relative;
+}
+.search-input input {
+  padding-right: 40px;
+}
+.search-input::before {
+  content: '🔍';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Grade form */
 #addGradeForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  max-width: 700px;
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 720px;
+}
+#addGradeForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
 }
 #addGradeForm input,
-#addGradeForm select { padding: 8px; font-size: 14px; margin-bottom: 0; }
-#addGradeForm button { grid-column: span 2; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+#addGradeForm select { margin-bottom: 0; }
+
+#addGradeForm button {
+  grid-column: span 2;
+  padding: 11px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+}
 
 @media (max-width: 600px) {
   #addGradeForm { grid-template-columns: 1fr; }
   #addGradeForm button { grid-column: span 1; }
+}
+
+/* Register form */
+#form {
+  max-width: 640px;
+  margin: 0 auto;
+  background: white;
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+#form input,
+#form select { margin-bottom: 0; }
+#form button {
+  grid-column: span 2;
+  padding: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  #form { grid-template-columns: 1fr; }
+  #form button { grid-column: span 1; }
 }

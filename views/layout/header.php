@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/main.css">
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/sidebar.css">
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/forms.css">
@@ -26,6 +29,8 @@
     <span class="system-name"></span>
   </div>
   <div class="header-right">
-    <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+    <button class="logout-btn" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+    </button>
   </div>
 </div>

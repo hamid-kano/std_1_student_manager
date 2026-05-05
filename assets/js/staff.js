@@ -27,12 +27,12 @@ function createStaffRow(s) {
 
   const ctrl    = row.insertCell(3);
   const editBtn = document.createElement('button');
-  editBtn.innerHTML = '✏️';
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
   editBtn.className = 'edit-btn';
   editBtn.onclick   = () => editStaff(editBtn);
 
   const delBtn = document.createElement('button');
-  delBtn.innerHTML = '🗑️';
+  delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
   delBtn.className = 'delete-btn';
   delBtn.onclick   = () => { if (confirm('حذف المدرس؟')) { row.remove(); saveStaff(); } };
 

@@ -23,12 +23,12 @@ function createStudentRow(s) {
   statusBtn.onclick     = () => toggleStatus(statusBtn);
 
   const editBtn = document.createElement('button');
-  editBtn.innerHTML = '✏️';
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
   editBtn.className = 'edit-btn';
   editBtn.onclick   = () => openEditStudent(row);
 
   const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = '🗑️';
+  deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
   deleteBtn.className = 'delete-btn';
   deleteBtn.onclick   = () => deleteStudent(row);
 

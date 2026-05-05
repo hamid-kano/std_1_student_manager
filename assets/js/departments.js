@@ -10,13 +10,13 @@ function createEditButton(row) {
   const ctrl = row.insertCell(3);
 
   const editBtn = document.createElement('button');
-  editBtn.innerHTML = '✏';
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
   editBtn.className = 'icon-btn edit-icon';
   editBtn.addEventListener('click', () => {
-    if (editBtn.innerHTML === '✏') {
+    if (editBtn.innerHTML.includes('fa-pen')) {
       row.cells[1].innerHTML = `<input type="text" value="${row.cells[1].textContent}">`;
       row.cells[2].innerHTML = `<input type="text" value="${row.cells[2].textContent}">`;
-      editBtn.innerHTML = '💾';
+      editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
     } else {
       const newName    = row.cells[1].querySelector('input').value.trim();
       const newFaculty = row.cells[2].querySelector('input').value.trim();
@@ -29,7 +29,7 @@ function createEditButton(row) {
   });
 
   const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = '🗑';
+  deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
   deleteBtn.className = 'icon-btn delete-icon';
   deleteBtn.addEventListener('click', () => deleteDepartment(row));
 

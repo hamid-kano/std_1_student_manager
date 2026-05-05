@@ -1,80 +1,130 @@
 /* =========================================
    Student ID Cards
    ========================================= */
+#cardsOutput {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1100px) { #cardsOutput { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { #cardsOutput { grid-template-columns: 1fr; } }
+
 .student-card {
-  width: 100%;
-  background: #fff;
-  border-radius: 12px;
+  background: white;
+  border-radius: 14px;
   border: 2px solid #1e3a8a;
-  padding: 15px;
+  padding: 18px;
   direction: rtl;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
   font-size: 14px;
+  transition: transform .2s, box-shadow .2s;
+}
+.student-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.14);
 }
 
 .card-top {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
 }
 .card-top img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 56px; height: 56px;
   border-radius: 50%;
+  object-fit: cover;
   border: 2px solid #1e3a8a;
 }
-.university-name { font-weight: bold; font-size: 16px; color: #1e3a8a; }
+.university-name { font-weight: 700; font-size: 15px; color: #1e3a8a; }
 
-.card-body { display: flex; gap: 15px; margin-top: 30px; }
-.student-photo { width: 120px; height: 140px; object-fit: cover; border-radius: 8px; border: 2px solid #ccc; }
-.card-info { flex: 1; line-height: 1.8; }
-
-.card-actions { text-align: center; margin-top: 10px; }
-.card-actions button { padding: 5px 12px; margin: 4px; border: none; border-radius: 6px; cursor: pointer; width: auto; }
-
-#cardsOutput {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.card-body { display: flex; gap: 14px; margin-top: 10px; }
+.student-photo {
+  width: 100px; height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  flex-shrink: 0;
 }
-@media (max-width: 768px) {
-  #cardsOutput { grid-template-columns: 1fr; }
+.card-info { flex: 1; line-height: 2; font-size: 13px; }
+.card-info p strong { color: #475569; }
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
 }
+.card-actions button {
+  flex: 1;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font);
+  width: auto;
+}
+.card-actions button:first-child { background: #eff6ff; color: #2563eb; }
+.card-actions button:last-child  { background: #fef2f2; color: #dc2626; }
 
 /* =========================================
    Courses
    ========================================= */
 .course-dept-card {
   background: white;
-  border-radius: 18px;
-  padding: 25px;
-  margin-bottom: 35px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
 }
-.course-dept-card h2 { text-align: center; margin-bottom: 25px; color: #1e293b; }
+
+.course-dept-card > h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f5f9;
+}
 
 .course-year {
-  background: linear-gradient(135deg, #e5e7eb, #f8fafc);
-  padding: 15px 20px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  border-right: 6px solid #94a3b8;
+  background: #f8fafc;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border-right: 5px solid #94a3b8;
 }
-.course-year h3 { margin-bottom: 15px; color: #334155; font-size: 18px; }
+.course-year h3 { margin-bottom: 12px; color: #334155; font-size: 16px; }
 
 .course-semester {
-  background: #ffffff;
+  background: white;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
 }
-.course-semester strong { display: block; margin-bottom: 12px; color: #2563eb; font-size: 15px; }
+.course-semester strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 14px;
+}
 
-.course-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.course-item { background: #2563eb; color: white; padding: 6px 16px; border-radius: 20px; font-size: 14px; }
+.course-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.course-item {
+  background: var(--primary);
+  color: white;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
 
 /* =========================================
    Print

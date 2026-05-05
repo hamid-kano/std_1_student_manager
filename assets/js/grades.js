@@ -24,15 +24,15 @@ function createOrGetStudentTable(grade) {
 
     // زر طباعة
     const printBtn = document.createElement('button');
-    printBtn.textContent  = '🖨️ طباعة الطالب';
-    printBtn.style.cssText = 'width:auto; padding:5px 10px; margin-right:10px;';
+    printBtn.innerHTML    = '<i class="fa-solid fa-print"></i> طباعة';
+    printBtn.style.cssText = 'width:auto; padding:5px 12px; margin-right:8px; background:#eff6ff; color:#2563eb; border:none; border-radius:8px; font-family:var(--font); cursor:pointer;';
     printBtn.onclick = () => printSingleStudent(grade.studentId);
     title.appendChild(printBtn);
 
     // زر حذف الجدول
     const delTableBtn = document.createElement('button');
-    delTableBtn.textContent  = '🗑️ حذف جدول الطالب';
-    delTableBtn.style.cssText = 'width:auto; padding:5px 10px;';
+    delTableBtn.innerHTML    = '<i class="fa-solid fa-trash"></i> حذف الجدول';
+    delTableBtn.style.cssText = 'width:auto; padding:5px 12px; background:#fef2f2; color:#dc2626; border:none; border-radius:8px; font-family:var(--font); cursor:pointer;';
     delTableBtn.onclick = () => {
       if (confirm(`هل تريد حذف جميع العلامات للطالب ${grade.studentName}?`)) {
         div.remove();
@@ -69,12 +69,12 @@ function createGradeRow(grade) {
 
   const ctrl    = row.insertCell(2);
   const editBtn = document.createElement('button');
-  editBtn.textContent  = '✏️';
+  editBtn.innerHTML    = '<i class="fa-solid fa-pen"></i>';
   editBtn.style.cssText = 'background:white; width:32px; height:32px;';
   editBtn.onclick = () => openEditGrade(row, grade.studentId);
 
   const delBtn = document.createElement('button');
-  delBtn.textContent  = '🗑️';
+  delBtn.innerHTML    = '<i class="fa-solid fa-trash"></i>';
   delBtn.style.cssText = 'background:white; width:32px; height:32px;';
   delBtn.onclick = () => {
     if (confirm('هل تريد حذف العلامة؟')) {
@@ -95,10 +95,10 @@ function openEditGrade(row, studentId) {
   gradeCell.innerHTML = `<input type="number" value="${oldGrade}" min="0" max="100" style="width:60px">`;
 
   const editBtn = row.cells[2].querySelector('button:first-child');
-  editBtn.textContent = '💾';
+  editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
   editBtn.onclick = () => {
     gradeCell.textContent = gradeCell.querySelector('input').value;
-    editBtn.textContent   = '✏️';
+    editBtn.innerHTML     = '<i class="fa-solid fa-pen"></i>';
     editBtn.onclick       = () => openEditGrade(row, studentId);
     saveGrades();
     updateStudentAverage(studentId);

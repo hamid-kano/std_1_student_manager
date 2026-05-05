@@ -71,7 +71,7 @@ function renderCoursesSystem() {
     deptCard.className = 'course-dept-card';
 
     const delBtn = document.createElement('button');
-    delBtn.textContent    = '🗑️ حذف القسم';
+    delBtn.innerHTML      = '<i class="fa-solid fa-trash"></i> حذف القسم';
     delBtn.style.cssText  = 'float:left; margin-bottom:10px; width:auto; padding:6px 12px;';
     delBtn.onclick        = () => deleteDepartmentCourses(dept);
     deptCard.appendChild(delBtn);
@@ -97,8 +97,8 @@ function renderCoursesSystem() {
           li.innerHTML = `
             <span>${course}</span>
             <span>
-              <button class="edit-btn"   onclick="editCourse('${dept}','${year}','${sem}',${index})">✏️</button>
-              <button class="delete-btn" onclick="deleteCourse('${dept}','${year}','${sem}',${index})">🗑️</button>
+              <button class="edit-btn"   onclick="editCourse('${dept}','${year}','${sem}',${index})"><i class="fa-solid fa-pen"></i></button>
+              <button class="delete-btn" onclick="deleteCourse('${dept}','${year}','${sem}',${index})"><i class="fa-solid fa-trash"></i></button>
             </span>`;
           ul.appendChild(li);
         });
