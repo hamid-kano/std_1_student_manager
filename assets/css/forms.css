@@ -91,16 +91,11 @@ input::placeholder { color: #94a3b8; }
   pointer-events: none;
 }
 
-/* Grade form */
+/* Grade form - داخل .card */
 #addGradeForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  background: white;
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 720px;
 }
 #addGradeForm label {
   display: flex;
@@ -112,7 +107,6 @@ input::placeholder { color: #94a3b8; }
 }
 #addGradeForm input,
 #addGradeForm select { margin-bottom: 0; }
-
 #addGradeForm button {
   grid-column: span 2;
   padding: 11px;
@@ -125,28 +119,24 @@ input::placeholder { color: #94a3b8; }
   font-family: var(--font);
   cursor: pointer;
 }
-
 @media (max-width: 600px) {
   #addGradeForm { grid-template-columns: 1fr; }
   #addGradeForm button { grid-column: span 1; }
 }
 
-/* Register form */
-#form {
-  max-width: 640px;
-  margin: 0 auto;
-  background: white;
-  padding: 28px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+/* Register form - داخل .card */
+#registerForm {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
 }
-#form input,
-#form select { margin-bottom: 0; }
-#form button {
-  grid-column: span 2;
+#registerForm input,
+#registerForm select { margin-bottom: 0; }
+#registerForm .full  { grid-column: span 3; }
+#registerForm .half  { grid-column: span 1; }
+#registerForm button {
+  grid-column: span 3;
+  max-width: 220px;
   padding: 12px;
   background: var(--primary);
   color: white;
@@ -156,8 +146,16 @@ input::placeholder { color: #94a3b8; }
   font-weight: 700;
   font-family: var(--font);
   cursor: pointer;
+  transition: .2s;
+}
+#registerForm button:hover { background: var(--primary-dk); }
+@media (max-width: 900px) {
+  #registerForm { grid-template-columns: 1fr 1fr; }
+  #registerForm .full   { grid-column: span 2; }
+  #registerForm button  { grid-column: span 2; }
 }
 @media (max-width: 600px) {
-  #form { grid-template-columns: 1fr; }
-  #form button { grid-column: span 1; }
+  #registerForm { grid-template-columns: 1fr; }
+  #registerForm .full,
+  #registerForm button  { grid-column: span 1; }
 }
