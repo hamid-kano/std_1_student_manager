@@ -3,6 +3,16 @@
   <p>إنشاء وطباعة بطاقات هوية الطلاب</p>
 </div>
 
+
+
+<!-- بحث -->
+<div class="filters-bar" style="margin-top:20px;">
+  <input type="text" id="searchCard"
+         placeholder="ابحث بالاسم أو الرقم الجامعي..."
+         onkeyup="searchCard()"
+         style="max-width:400px;">
+</div>
+
 <!-- فورم الإنشاء -->
 <div class="card">
   <h3><i class="fa-solid fa-plus-circle"></i> إنشاء بطاقة جديدة</h3>
@@ -55,13 +65,6 @@
   </button>
 </div>
 
-<!-- بحث -->
-<div class="filters-bar" style="margin-top:20px;">
-  <input type="text" id="searchCard"
-         placeholder="ابحث بالاسم أو الرقم الجامعي..."
-         onkeyup="searchCard()"
-         style="max-width:400px;">
-</div>
 
 <!-- البطاقات -->
 <div id="cardsOutput"></div>
