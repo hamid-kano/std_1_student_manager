@@ -1,3 +1,5 @@
+<?php $p = $_GET['page'] ?? 'dashboard'; ?>
+
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div class="sidebar" id="sidebar">
@@ -7,38 +9,38 @@
   </div>
 
   <span class="nav-label">القائمة الرئيسية</span>
-  <a class="active" onclick="showPage('dashboard', this)">
+  <a href="?page=dashboard"  class="<?= $p==='dashboard' ?'active':'' ?>">
     <i class="fa-solid fa-house"></i> الرئيسية
   </a>
-  <a onclick="showPage('students', this)">
+  <a href="?page=students"   class="<?= $p==='students'  ?'active':'' ?>">
     <i class="fa-solid fa-user-graduate"></i> الطلاب
   </a>
-  <a onclick="showPage('register', this)">
+  <a href="?page=register"   class="<?= $p==='register'  ?'active':'' ?>">
     <i class="fa-solid fa-user-plus"></i> التسجيل الجامعي
   </a>
 
   <span class="nav-label">الهيكل الأكاديمي</span>
-  <a onclick="showPage('faculties', this)">
+  <a href="?page=faculties"   class="<?= $p==='faculties'   ?'active':'' ?>">
     <i class="fa-solid fa-landmark"></i> الكليات
   </a>
-  <a onclick="showPage('departments', this)">
+  <a href="?page=departments" class="<?= $p==='departments' ?'active':'' ?>">
     <i class="fa-solid fa-folder-open"></i> الأقسام
   </a>
-  <a onclick="showPage('courses', this)">
+  <a href="?page=courses"     class="<?= $p==='courses'     ?'active':'' ?>">
     <i class="fa-solid fa-book-open"></i> المقررات
   </a>
-  <a onclick="showPage('staff', this)">
+  <a href="?page=staff"       class="<?= $p==='staff'       ?'active':'' ?>">
     <i class="fa-solid fa-chalkboard-user"></i> المدرسين
   </a>
 
   <span class="nav-label">المتابعة الأكاديمية</span>
-  <a onclick="showPage('grades', this)">
+  <a href="?page=grades"   class="<?= $p==='grades'   ?'active':'' ?>">
     <i class="fa-solid fa-chart-bar"></i> العلامات
   </a>
-  <a onclick="showPage('absences', this)">
+  <a href="?page=absences" class="<?= $p==='absences' ?'active':'' ?>">
     <i class="fa-solid fa-calendar-xmark"></i> الغيابات
   </a>
-  <a onclick="showPage('Cards', this)">
+  <a href="?page=cards"    class="<?= $p==='cards'    ?'active':'' ?>">
     <i class="fa-solid fa-id-card"></i> البطاقات
   </a>
 </div>

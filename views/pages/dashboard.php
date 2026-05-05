@@ -1,96 +1,74 @@
-<div id="dashboard" class="page active">
+<?php
+// إحصائيات سريعة
+$db = Database::getInstance();
+$stats = [
+  'students'    => $db->query("SELECT COUNT(*) FROM students")->fetchColumn(),
+  'active'      => $db->query("SELECT COUNT(*) FROM students WHERE status='active'")->fetchColumn(),
+  'staff'       => $db->query("SELECT COUNT(*) FROM staff")->fetchColumn(),
+  'departments' => $db->query("SELECT COUNT(*) FROM departments")->fetchColumn(),
+  'courses'     => $db->query("SELECT COUNT(*) FROM courses")->fetchColumn(),
+  'grades'      => $db->query("SELECT COUNT(*) FROM grades")->fetchColumn(),
+];
+?>
 
-  <div class="page-header">
-    <h1><i class="fa-solid fa-house"></i> الرئيسية</h1>
-    <p>إضافة الأقسام والمدرسين والمقررات</p>
+<div class="page-header">
+  <h1><i class="fa-solid fa-house"></i> لوحة التحكم</h1>
+  <p>مرحباً، <?= htmlspecialchars(Session::user()['username'] ?? 'admin') ?></p>
+</div>
+
+<?php include __DIR__ . '/../layout/flash.php'; ?>
+
+<!-- إحصائيات -->
+<div class="stats">
+  <div class="stat">
+    <h2><?= $stats['students'] ?></h2>
+    <p><i class="fa-solid fa-user-graduate"></i> إجمالي الطلاب</p>
   </div>
-
-  <!-- إضافة قسم -->
-  <div class="card">
-    <h3><i class="fa-solid fa-folder-plus"></i> إضافة قسم جديد</h3>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>الكلية</label>
-        <select id="facultySelect">
-          <option disabled selected>اختر الكلية</option>
-          <option>كلية العلوم الطبيعية والتكنولوجيا</option>
-          <option>كلية الهندسة</option>
-          <option>كلية العلوم</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>اسم القسم</label>
-        <input type="text" id="departmentName" placeholder="أدخل اسم القسم">
-      </div>
-    </div>
-    <br>
-    <button id="addBtn" class="btn-submit" style="max-width:200px;" onclick="addDepartment()">إضافة القسم</button>
+  <div class="stat" style="border-top-color:#16a34a;">
+    <h2 style="color:#16a34a;"><?= $stats['active'] ?></h2>
+    <p><i class="fa-solid fa-circle-check"></i> الطلاب المنتظمون</p>
   </div>
-
-  <!-- إضافة مدرس -->
-  <div class="card">
-    <h3><i class="fa-solid fa-chalkboard-user"></i> إضافة مدرس</h3>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>اسم المدرس</label>
-        <input id="staffName" placeholder="الاسم الكامل">
-      </div>
-      <div class="form-group">
-        <label>خريج جامعة</label>
-        <input id="staffUniversity" placeholder="اسم الجامعة">
-      </div>
-      <div class="form-group full">
-        <label>الخبرات</label>
-        <input id="staffExperience" placeholder="اذكر الخبرات">
-      </div>
-    </div>
-    <br>
-    <button class="btn-submit" style="max-width:200px;" onclick="addStaff()">إضافة المدرس</button>
+  <div class="stat" style="border-top-color:#f59e0b;">
+    <h2 style="color:#f59e0b;"><?= $stats['staff'] ?></h2>
+    <p><i class="fa-solid fa-chalkboard-user"></i> المدرسون</p>
   </div>
-
-  <!-- إضافة مقرر -->
-  <div class="card">
-    <h3><i class="fa-solid fa-book-medical"></i> إضافة مقرر دراسي</h3>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>القسم</label>
-        <select id="courseDept">
-          <option disabled selected>اختر القسم</option>
-          <option>هندسة الحاسوب</option>
-          <option>هندسة اتصالات</option>
-          <option>هندسة ميكاترونيك</option>
-          <option>بيولوجيا</option>
-          <option>رياضيات</option>
-          <option>فيزياء</option>
-          <option>كيمياء</option>
-          <option>بيوكيمياء</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>السنة الدراسية</label>
-        <select id="courseYear">
-          <option disabled selected>اختر السنة</option>
-          <option>السنة الأولى</option>
-          <option>السنة الثانية</option>
-          <option>السنة الثالثة</option>
-          <option>السنة الرابعة</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>الفصل الدراسي</label>
-        <select id="courseSemester">
-          <option disabled selected>اختر الفصل</option>
-          <option>الفصل الأول</option>
-          <option>الفصل الثاني</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>اسم المادة</label>
-        <input id="courseName" placeholder="أدخل اسم المادة">
-      </div>
-    </div>
-    <br>
-    <button class="btn-submit" style="max-width:200px;" onclick="addCourseSystem()">إضافة المادة</button>
+  <div class="stat" style="border-top-color:#8b5cf6;">
+    <h2 style="color:#8b5cf6;"><?= $stats['departments'] ?></h2>
+    <p><i class="fa-solid fa-folder-open"></i> الأقسام</p>
   </div>
+  <div class="stat" style="border-top-color:#06b6d4;">
+    <h2 style="color:#06b6d4;"><?= $stats['courses'] ?></h2>
+    <p><i class="fa-solid fa-book-open"></i> المقررات</p>
+  </div>
+  <div class="stat" style="border-top-color:#ec4899;">
+    <h2 style="color:#ec4899;"><?= $stats['grades'] ?></h2>
+    <p><i class="fa-solid fa-chart-bar"></i> العلامات المسجلة</p>
+  </div>
+</div>
 
+<!-- روابط سريعة -->
+<div class="card" style="margin-top:28px;">
+  <h3><i class="fa-solid fa-bolt"></i> وصول سريع</h3>
+  <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;">
+    <?php
+    $links = [
+      ['page'=>'register',    'icon'=>'fa-user-plus',        'label'=>'تسجيل طالب',    'color'=>'#2563eb'],
+      ['page'=>'students',    'icon'=>'fa-user-graduate',    'label'=>'قائمة الطلاب',  'color'=>'#16a34a'],
+      ['page'=>'grades',      'icon'=>'fa-chart-bar',        'label'=>'إضافة علامة',   'color'=>'#f59e0b'],
+      ['page'=>'absences',    'icon'=>'fa-calendar-xmark',   'label'=>'تسجيل غياب',    'color'=>'#dc2626'],
+      ['page'=>'faculties',   'icon'=>'fa-landmark',         'label'=>'الكليات',        'color'=>'#8b5cf6'],
+      ['page'=>'departments', 'icon'=>'fa-folder-open',      'label'=>'الأقسام',        'color'=>'#06b6d4'],
+    ];
+    foreach ($links as $l): ?>
+    <a href="?page=<?= $l['page'] ?>"
+       style="display:flex; align-items:center; gap:8px; padding:12px 20px;
+              background:<?= $l['color'] ?>15; color:<?= $l['color'] ?>;
+              border-radius:10px; text-decoration:none; font-weight:600; font-size:14px;
+              border:1px solid <?= $l['color'] ?>30; transition:.2s;"
+       onmouseover="this.style.background='<?= $l['color'] ?>'; this.style.color='white';"
+       onmouseout="this.style.background='<?= $l['color'] ?>15'; this.style.color='<?= $l['color'] ?>';">
+      <i class="fa-solid <?= $l['icon'] ?>"></i> <?= $l['label'] ?>
+    </a>
+    <?php endforeach; ?>
+  </div>
 </div>

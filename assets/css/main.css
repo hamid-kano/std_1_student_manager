@@ -85,6 +85,13 @@ body {
 }
 .logout-btn:hover { background: #dc2626; color: white; border-color: #dc2626; }
 
+.header-user {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-left: 12px;
+}
+.header-user i { margin-left: 4px; }
+
 /* =========================================
    Card (white box)
    ========================================= */
@@ -296,6 +303,30 @@ button {
 
 .btn-save   { background: var(--primary); color: white; }
 .btn-cancel { background: #f1f5f9; color: #475569; }
+
+/* =========================================
+   Alert / Flash Messages
+   ========================================= */
+.alert {
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.alert-success {
+  background: #dcfce7;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+.alert-error {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
 
 /* =========================================
    Page Title
